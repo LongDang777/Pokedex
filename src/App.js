@@ -11,10 +11,10 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchData(URL);
+    gethData(URL);
   }, [])
 
-  const fetchData = async (url) => {
+  const gethData = async (url) => {
     try {
       setTimeout(async () => {
         const res = await axios.get(url);
@@ -36,8 +36,7 @@ function App() {
       const clientHeight = document.documentElement.clientHeight
 
       if (scrollTop + clientHeight >= scrollHeight) {
-        console.log('log');
-        nextApi && fetchData(nextApi)
+        nextApi && gethData(nextApi)
       }
     }
 
