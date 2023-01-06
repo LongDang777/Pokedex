@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/poketex/static/css/main.6c831501.css",
+    "main.js": "/poketex/static/js/main.5d8a5ead.js",
+    "static/js/787.73f0010c.chunk.js": "/poketex/static/js/787.73f0010c.chunk.js",
+    "index.html": "/poketex/index.html",
+    "main.6c831501.css.map": "/poketex/static/css/main.6c831501.css.map",
+    "main.5d8a5ead.js.map": "/poketex/static/js/main.5d8a5ead.js.map",
+    "787.73f0010c.chunk.js.map": "/poketex/static/js/787.73f0010c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c831501.css",
+    "static/js/main.5d8a5ead.js"
+  ]
+}
