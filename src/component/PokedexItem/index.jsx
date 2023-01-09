@@ -1,6 +1,8 @@
 import React from 'react';
+import loading from '../../assets/imgs/loadingGif.gif';
 import useFetch from '../../hook/useFetch';
 import './style.css';
+
 
 const colors = {
   fire: '#FDDFDF',
@@ -25,7 +27,7 @@ export default function PokedexItem(props) {
 
   const res = useFetch(url);
   if (!res.response) {
-    return <div>Loading...</div>
+    return <img src={loading} alt="" />
   }
 
   const img = res.response.sprites.other.dream_world.front_default;

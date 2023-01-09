@@ -1,9 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import PokedexItem from './component/PokedexItem';
 import useFetch from './hook/useFetch';
-
 
 function App() {
 
@@ -31,11 +29,11 @@ function App() {
     <div className="App">
       <h1 className='header'>Pokedex</h1>
       <div ref={containerRef} className='poke-container'>
-        {res?.response?.results.map((item) => {
+        {res?.response?.results.map(({name, url}) => {
           return <PokedexItem
-            key={item.name}
-            name={item.name}
-            url={item.url} />
+            key={name}
+            name={name}
+            url={url} />
         })}
       </div>
     </div>
