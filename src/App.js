@@ -1,63 +1,42 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import PokedexItem from './component/PokedexItem';
+import useFetch from './hook/useFetch';
 
-const URL = `https://pokeapi.co/api/v2/pokemon`
 
 function App() {
-  const [nextApi, setNextApi] = useState('')
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+
+  const [page, setPage] = useState(13)
+  const containerRef = useRef(null)
+
+  const URL = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${page}`
+
+  const res = useFetch(URL)
+  console.log(page);
+
+
+  const handleScroll = () => {
+    const isBottom = containerRef?.current?.getBoundingClientRect().bottom <= window.innerHeight;
+    isBottom && setPage(prev => prev + 10)
+  }
 
   useEffect(() => {
-    gethData(URL);
-  }, [])
-
-  const gethData = async (url) => {
-    try {
-      setTimeout(async () => {
-        const res = await axios.get(url);
-        setData(() => {
-          return [...data, ...res.data.results]
-        });
-        setNextApi(res.data.next)
-      }, 500);
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = document.documentElement.scrollTop
-      const scrollHeight = document.documentElement.scrollHeight
-      const clientHeight = document.documentElement.clientHeight
-
-      if (scrollTop + clientHeight >= scrollHeight) {
-        nextApi && gethData(nextApi)
-      }
-    }
-
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [nextApi, data]);
-
+  }, []);
 
 
   return (
     <div className="App">
       <h1 className='header'>Pokedex</h1>
-      <div className='poke-container'>
-        {data.length > 0 && data.map((item) => {
+      <div ref={containerRef} className='poke-container'>
+        {res?.response?.results.map((item) => {
           return <PokedexItem
             key={item.name}
             name={item.name}
-            numberItem={data.length}
             url={item.url} />
         })}
       </div>
