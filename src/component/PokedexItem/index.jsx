@@ -36,7 +36,7 @@ export default function PokedexItem(props) {
   return (
     <div className='pokemon' style={{ backgroundColor: colors[type] }}>
       <div className="img-container">
-        <img className='img-main' src={img} alt="" />
+        <img className='img-main' src={img || imgHover} alt="" />
         <img className='img-hover' src={imgHover} alt="" />
       </div>
       <div className="info">

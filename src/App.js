@@ -7,18 +7,16 @@ import useFetch from './hook/useFetch';
 
 function App() {
 
-  const [page, setPage] = useState(13)
+  const [page, setPage] = useState(18)
   const containerRef = useRef(null)
 
   const URL = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${page}`
 
   const res = useFetch(URL)
-  console.log(page);
-
 
   const handleScroll = () => {
     const isBottom = containerRef?.current?.getBoundingClientRect().bottom <= window.innerHeight;
-    isBottom && setPage(prev => prev + 10)
+    isBottom && setPage(prev => prev + 12)
   }
 
   useEffect(() => {
