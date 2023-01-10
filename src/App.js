@@ -13,6 +13,15 @@ function App() {
   const res = useFetch(URL)
 
   const handleScroll = () => {
+    // const {
+    //   scrollTop,
+    //   scrollHeight,
+    //   clientHeight
+    // } = document.documentElement;
+    // console.log('scrolltop',scrollTop);
+
+    // console.log(containerRef?.current?.getBoundingClientRect().top);
+
     const isBottom = containerRef?.current?.getBoundingClientRect().bottom <= window.innerHeight;
     isBottom && setPage(prev => prev + 12)
   }
@@ -24,12 +33,11 @@ function App() {
     };
   }, []);
 
-
   return (
-    <div className="App">
+    <div ref={containerRef}  className="App">
       <h1 className='header'>Pokedex</h1>
-      <div ref={containerRef} className='poke-container'>
-        {res?.response?.results.map(({name, url}) => {
+      <div  className='poke-container'>
+        {res?.response?.results.map(({ name, url }) => {
           return <PokedexItem
             key={name}
             name={name}
