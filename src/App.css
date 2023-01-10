@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   font-family: 'Lato', sans-serif;
-  
 }
 
 .header {
@@ -15,4 +14,11 @@
   justify-content: center;
   margin: 0 auto;
   max-width: 1200px;
+}
+
+.poke-container .loadingPokemon {
+  display: block;
+  mix-blend-mode: color-burn;
+  width: 50%;
+  margin-top: -100px;
 }

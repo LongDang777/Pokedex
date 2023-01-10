@@ -27,7 +27,8 @@ export default function PokedexItem(props) {
 
   const res = useFetch(url);
   if (!res.response) {
-    return <img src={loading} alt="" />
+    return ''
+    // return <img className='loadingPokemon' src={loading} alt="" />
   }
 
   const img = res.response.sprites.other.dream_world.front_default;
