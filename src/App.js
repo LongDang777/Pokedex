@@ -13,17 +13,13 @@ function App() {
   const res = useFetch(URL)
 
   const handleScroll = () => {
-    // const {
-    //   scrollTop,
-    //   scrollHeight,
-    //   clientHeight
-    // } = document.documentElement;
-    // console.log('scrolltop',scrollTop);
+    const {
+      scrollTop,
+      scrollHeight,
+      clientHeight
+    } = document.documentElement;
 
-    // console.log(containerRef?.current?.getBoundingClientRect().top);
-
-    const isBottom = containerRef?.current?.getBoundingClientRect().bottom <= window.innerHeight;
-    isBottom && setPage(prev => prev + 12)
+    (scrollTop + clientHeight >= scrollHeight - 5) && setPage(prev => prev + 12)
   }
 
   useEffect(() => {
@@ -34,9 +30,9 @@ function App() {
   }, []);
 
   return (
-    <div ref={containerRef}  className="App">
+    <div ref={containerRef} className="App">
       <h1 className='header'>Pokedex</h1>
-      <div  className='poke-container'>
+      <div className='poke-container'>
         {res?.response?.results.map(({ name, url }) => {
           return <PokedexItem
             key={name}
